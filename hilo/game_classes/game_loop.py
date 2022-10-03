@@ -29,19 +29,20 @@ class Game_loop:
         self.player.display_points() #displays player's starting points
 
         while play == "y":
-            card = Card() #establishes a new card value for the next game loop
+            
 
-            print (f"The card is: {self.cards[0].display()}") # displays first card value, possibly replace with self.cards[0].display1() Card class method
+            print (f"The card is: {self.cards[0].get_value()}") # displays first card value, possibly replace with self.cards[0].display1() Card class method
 
-            guess = self.player.input() #Player class method asking for player input
+            self.player.input() #Player class method asking for player input
 
-            print (f"Next card was: {self.cards[1].display()}") # displays first card value, possibly replace with self.cards[0].display2() Card class method
+            print (f"Next card was: {self.cards[1].get_value()}") # displays first card value, possibly replace with self.cards[0].display2() Card class method
 
             self.player.point_update(self.cards) #Player class method to update points based on player guess
             
             self.player.display_points() #player method to display player's updated points
             
             ####These two functions can be combined into a single function defined as a Game_loop class method -- it updates the cards list to prepare for the next games round
+            card = Card() #establishes a new card value for the next game loop
             self.cards.pop(0) #removes first card in Cards list
             self.cards.append(card) #adds a new card to the end of the list
 
