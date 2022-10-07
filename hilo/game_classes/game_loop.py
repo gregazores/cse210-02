@@ -1,5 +1,7 @@
-from game_classes.player import Player
+from game_classes.player import Player, validate_input
 from game_classes.card import Card
+
+
 
 class Game_loop:
     """The main game play loop.
@@ -30,14 +32,18 @@ class Game_loop:
 
         while play == "y":
             
-
             print (f"The card is: {self.cards[0].get_value()}") # displays first card value, possibly replace with self.cards[0].display1() Card class method
 
             self.player.input() #Player class method asking for player input
 
-            print (f"Next card was: {self.cards[1].get_value()}") # displays first card value, possibly replace with self.cards[0].display2() Card class method
-
-            self.player.point_update(self.cards) #Player class method to update points based on player guess
+            self.player.update_points(self.cards) #Player class method to update points based on player guess
+            
+            if self.player.isCorrect == 0:
+                print (f"Next card was: \033[93m{self.cards[1].get_value()}\033[0m") # displays first card value, possibly replace with self.cards[0].display2() Card class method
+            if self.player.isCorrect == 1:
+                print (f"Next card was: \033[92m{self.cards[1].get_value()}\033[0m") # displays first card value, possibly replace with self.cards[0].display2() Card class method
+            if self.player.isCorrect == 2:
+                print (f"Next card was: \033[91m{self.cards[1].get_value()}\033[0m") # displays first card value, possibly replace with self.cards[0].display2() Card class method
             
             self.player.display_points() #player method to display player's updated points
             
@@ -47,9 +53,14 @@ class Game_loop:
             self.cards.append(card) #adds a new card to the end of the list
 
             if self.player.points <= 0:
-                print ("I'm sorry you're out of points")
+                print ("I'm sorry, you're out of points")
                 play = "n"
             else:
-                play = input("Play again? [y/n]")
+                #play = input("Play again? [y/n]")
+                #call the validate input function to only accept y or n for an answer
+                print()
+                play = validate_input("Play again? [y/n] ", ['y', 'n'])
 
-        print("Thanks for Playing!")
+        print("Thanks for playing!")
+
+
