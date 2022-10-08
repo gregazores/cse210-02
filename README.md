@@ -20,3 +20,4 @@ Melissa Howard: skeleton code of main game file, README
 Eze Nicolidakis: Player class
 Jeevee Azores: funtions called by main game loop function
 Sumara Prieto: Card class
+Jared Martinez: Final code review & enhancements
