@@ -12,7 +12,7 @@ import random
 class Card:
 
    def __init__(self):
-      self.value = random.randint(3, 9)
+      self.value = random.randint(1, 13)
    
    def get_value(self):
          return self.value
